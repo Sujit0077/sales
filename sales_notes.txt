@@ -1,0 +1,34 @@
+K-Means Clustering Algorithm:
+Load Data:
+
+Load the dataset from a CSV file using pandas.read_csv().
+Display the first few rows of the dataset to inspect its structure and content using data.head().
+Feature Selection and Preprocessing:
+
+Select the relevant features (SALES, QUANTITYORDERED, and PRICEEACH) for clustering from the dataset.
+Handle any missing values by removing rows that contain NaN using dropna().
+Normalization:
+
+Use StandardScaler from sklearn.preprocessing to normalize the selected features. This is important because K-Means clustering is sensitive to the scale of the data.
+Normalize the features by transforming them with scaler.fit_transform(), which standardizes them to have a mean of 0 and a standard deviation of 1.
+Elbow Method for Optimal K:
+
+Initialize an empty list inertia to store the sum of squared distances (inertia) for different values of K.
+Loop over a range of values for K (1 to 10) to fit K-Means clustering with different numbers of clusters:
+For each K, initialize a KMeans model (kmeans = KMeans(n_clusters=k)).
+Fit the model to the normalized features using kmeans.fit(scaled_feature).
+Append the inertia (sum of squared distances from points to their cluster centroids) for each value of K to the inertia list.
+Plot the inertia values against the number of clusters (K) to visualize the "elbow." The "elbow" point represents the optimal K, where adding more clusters doesn't significantly improve the clustering result. In your case, it’s identified as K = 3.
+Apply K-Means with Optimal K:
+
+Initialize the KMeans model with the optimal number of clusters (K = 3, based on the elbow method).
+Fit the KMeans model to the scaled features and obtain the cluster assignments (clusters = kmeans.fit_predict(scaled_feature)).
+Add Cluster Labels to Data:
+
+Add the cluster labels to the original dataset as a new column (Cluster) in the features dataframe.
+Visualize the Clusters:
+
+Create a scatter plot using matplotlib.pyplot to visualize the clustering result. In the plot:
+Use the first two features (SALES and QUANTITYORDERED) as the x and y axes.
+Color the points based on their assigned cluster using the c=clusters argument.
+The plot helps visually assess how well the data has been grouped into clusters.
